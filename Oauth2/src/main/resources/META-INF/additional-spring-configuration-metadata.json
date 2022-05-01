@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "app.auth.token-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'app.auth.token-secret'"
+  },
+  {
+    "name": "app.auth.tokenExpirationMsec",
+    "type": "java.lang.String",
+    "description": "A description for 'app.auth.tokenExpirationMsec'"
+  },
+  {
+    "name": "app.cors.allowed-origins",
+    "type": "java.lang.String",
+    "description": "A description for 'app.cors.allowed-origins'"
+  },
+  {
+    "name": "app.oauth2.authorized-redirect-uris",
+    "type": "java.lang.String",
+    "description": "A description for 'app.oauth2.authorized-redirect-uris'"
+  }
+]}
