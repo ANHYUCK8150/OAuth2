@@ -1,6 +1,7 @@
 package com.api.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.oauth.entity.AuthProvider;
 import com.oauth.entity.Role;
 import com.sun.istack.NotNull;
@@ -14,7 +15,8 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class User {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class User extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

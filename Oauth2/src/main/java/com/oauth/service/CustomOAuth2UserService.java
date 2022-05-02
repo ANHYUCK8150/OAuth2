@@ -43,15 +43,15 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     // 시용자 정보 추출
     private OAuth2User processOAuth2User(OAuth2UserRequest oAuth2UserRequest, OAuth2User oAuth2User) throws UnsupportedEncodingException {
-    	String ProviderId = oAuth2UserRequest.getClientRegistration().getRegistrationId();
-        OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(ProviderId, oAuth2User.getAttributes());
+    	String Provider = oAuth2UserRequest.getClientRegistration().getRegistrationId();
+        OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(Provider, oAuth2User.getAttributes());
         if(StringUtils.isEmpty(oAuth2UserInfo.getEmail())) {
             throw new OAuth2AuthenticationProcessingException("OAuth2 공급자(구글, 네이버, ...) 에서 이메일을 찾을 수 없습니다.");
         }
 
         //Optional<User> userOptional = userRepository.findByEmail(oAuth2UserInfo.getEmail());
-        //이메일이 같은 경우 ProviderId와 같이 검증해야함.
-        Optional<User> userOptional = userRepository.findByEmailAndProviderId(oAuth2UserInfo.getEmail(),ProviderId);
+        //이메일이 같은 경우 Provider와 같이 검증해야함.
+        Optional<User> userOptional = userRepository.findByEmailAndProvider(oAuth2UserInfo.getEmail(),AuthProvider.valueOf(Provider));
         User user;
         if(userOptional.isPresent()) {
             user = userOptional.get();
